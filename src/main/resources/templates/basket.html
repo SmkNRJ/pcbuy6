@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title> Каталог товаров </title>
+    <title> Корзина </title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link href="../static/css/bootstrap.css" th:href="@{/css/bootstrap.css}" rel="stylesheet" />
     <link href="../static/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
@@ -11,14 +11,14 @@
 
 <header class="p-3 bg-dark text-white" th:insert="blocks/header :: header"> </header>
 
+<div id="mini-basket">
 
-<div th:each="el : ${catalog}" class="alert alert-info mt-2 col-md-8 offset-md-2 py-5">
-    <h3 th:text="${el.title}"></h3>
-
-    <p th:text="${el.price}"></p>
-    <a th:href="'/shop/catalog/' + ${el.id}" class="btn btn-warning">Детальнее</a>
 </div>
 
+<div id="my-basket"></div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery.min.js"></script>
+<script src="js/add_basket.js"></script>
 
 <div th:insert="blocks/footer :: footer"> </div>
 

@@ -84,4 +84,12 @@ public class ShopController {
     public String order(Model model) {
         return "order";
     }
+
+    @GetMapping("/shop/basket")
+    public String basket(Model model) {
+        return "basket";
+    }
+
 }
+
+
