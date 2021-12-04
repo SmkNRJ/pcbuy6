@@ -11,7 +11,15 @@
 
 <header class="p-3 bg-dark text-white" th:insert="blocks/header :: header"> </header>
 
+<div th:if="${searchResult.empty}" class="alert alert-info mt-2 col-md-8 offset-md-2 py-5">
+    Ничего не найдено
+</div>
+<div th:each="el : ${searchResult}"  th:if="${!searchResult.empty}" class="alert alert-info mt-2 col-md-8 offset-md-2 py-5">
+    <h3 th:text="${el.title}"></h3>
 
+    <p th:text="${el.price}"></p>
+    <a th:href="'/shop/catalog/' + ${el.id}" class="btn btn-warning">Детальнее</a>
+</div>
 
 <div th:insert="blocks/footer :: footer"> </div>
 
