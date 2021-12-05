@@ -31,11 +31,11 @@ checkBasket();
 
 function showMiniBasket(){
     //отображение содержимого корзины
-    var out ='Товары в корзине:<br/>';
+    var out = "";
     for (var item in basket){
-        out +=  basket[item].title + ' --- ' + basket[item].count+'<br/>';
+        out += '<b>' + basket[item].title + ' </b>: ' + basket[item].count+'<br/>';
     }
-    $('#mini-basket').html(out);
+    $('#basket_content').html(out);
 }
 showMiniBasket();
 
