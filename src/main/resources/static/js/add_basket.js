@@ -8,6 +8,7 @@ function addToBasket(button) {
     //добавление товара в корзину
     id = $(button).parent().find(".el_id").val();
     title = $(button).parent().find(".el_title").val();
+    price = $(button).parents().find(".tovar").children("small")/*.children("p")*/.find(".el_price").text();
 
     if (basket[id] !=undefined){
         basket[id].count++;
@@ -16,6 +17,7 @@ function addToBasket(button) {
         basket[id] ={ count:1 }
     }
     basket[id].title = title;
+    basket[id].price = price;
     localStorage.setItem('basket', JSON.stringify(basket));
     //console.log(title);
     showMiniBasket();
@@ -40,26 +42,13 @@ function showMiniBasket(){
 showMiniBasket();
 
 
-$.getJSON('catalog.html'), function(data) {
-    var catalog = data;
-    checkBasket();
-    showBasket();
-
-    function showBasket(){
-        //отображение содержимого корзины
-        var out ='Товары в корзине:<br/>';
-        for (var item in basket){
-            out +=  '<button class="delete">x</button>';
-            out +=  basket[item].title; //название
-            out +=  basket[item].picture; //картинка
-            out +=  '<button class="minus">-</button>';
-            out +=  basket[item].count; //количество
-            out +=  '<button class="plus">+</button>';
-            out +=  basket[item].price * basket[item].count; //сумма
-
-
-        }
+$(document).ready(function(){
+    //отображение содержимого корзины
+    var out ='Товары в корзине:<br/>';
+    for (var item in basket){
+        out +=  '<div class="alert alert-info mt-2 col-md-8 offset-md-2 py-5">' + '<button className="delete">x</button>' + basket[item].title + basket[item].picture + '<button class="minus">-</button>' + basket[item].count + '<button class="plus">+</button>' + basket[item].price + basket[item].count + '</div>';
         $('#my-basket').html(out);
     }
-}
+
+});
 

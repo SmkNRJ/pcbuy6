@@ -23,8 +23,8 @@ public class FileUploadController {
     @PostMapping ("/shop/catalog/add")
     public void uploadFile(@RequestParam String title,@RequestParam String description,@RequestParam Integer price, @RequestParam MultipartFile file, HttpServletResponse response) throws IOException {
 
-        //String result = fileUploadService.uploadFile(file);
-        //String l = file.getOriginalFilename();
+        String result = fileUploadService.uploadFile(file);
+        String l = file.getOriginalFilename();
         Catalog catalog = new Catalog(title, description, price, "images/");
         catalogRepository.save(catalog);
         response.sendRedirect("/shop/catalog");

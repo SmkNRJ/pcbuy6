@@ -47,7 +47,7 @@
 
                     <div class="card-body">
                         <p class="card-text" th:text="${el.title}"></p>
-                        <div class="d-flex justify-content-between align-items-center">
+                        <div class="tovar d-flex justify-content-between align-items-center">
                             <div class="btn-group">
                                 <a th:href="'/shop/catalog/' + ${el.id}">
                                 <button type="button" class="btn btn-sm btn-outline-secondary">Подробнее</button>
@@ -58,7 +58,7 @@
                                         data-bs-target="#show_basket">В корзину</button>
 
                             </div>
-                            <small class="text-muted"><p th:text="${el.price}"></p></small>
+                            <small class="el_price text-muted"><p th:text="${el.price}"></p></small>
                         </div>
                     </div>
                 </div>
