@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title> О товаре </title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -15,6 +15,9 @@
 <div th:each="el : ${catalog}" class="alert alert-info mt-2 col-md-8 offset-md-2 py-5">
     <h3 th:text="${el.title}"></h3>
     <p th:text="${el.description}"></p>
+    
+    <img th:src="${el.picture}" alt="Картинка" width="400" height="400"/>
+
     <p th:text="${el.price}"></p>
     <a th:href="'/shop/catalog/' + ${el.id} + '/edit'" class="btn btn-warning">Редактировать</a><br><br>
     <form th:action="'/shop/catalog/' + ${el.id} + '/remove'" method="post">

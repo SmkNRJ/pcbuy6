@@ -13,8 +13,10 @@
 
 
 <div th:each="el : ${catalog}" class="alert alert-info mt-2 col-md-8 offset-md-2 py-5">
-    <h3 th:text="${el.title}"></h3>
 
+    <img th:src="${el.picture}" alt="Картинка" width="400" height="400"/>
+
+    <h3 th:text="${el.title}"></h3>
     <p th:text="${el.price}"></p>
     <a th:href="'/shop/catalog/' + ${el.id}" class="btn btn-warning">Детальнее</a>
 </div>

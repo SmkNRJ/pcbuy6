@@ -11,10 +11,16 @@ import java.util.List;
 @Service
 public class FileUploadService {
 
+
+
     public String uploadFile(MultipartFile file) throws IOException {
-        String path = "D:\\учеба\\diplom\\pcbuy\\src\\main\\resources\\static\\images\\";
+        String path = new File("").getAbsolutePath();
+        //String path = "src\\main\\resources\\static\\images\\";
+        //String path = new File("src/main/resources/static/image");
         File dir = new File(path);
         List<String> files = new ArrayList<>();
+
+
         for (File file1 : dir.listFiles()){
             if (file1.isFile()) {
                 files.add(file1.getName());
