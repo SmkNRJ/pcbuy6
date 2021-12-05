@@ -39,3 +39,27 @@ function showMiniBasket(){
 }
 showMiniBasket();
 
+
+$.getJSON('catalog.html'), function(data) {
+    var catalog = data;
+    checkBasket();
+    showBasket();
+
+    function showBasket(){
+        //отображение содержимого корзины
+        var out ='Товары в корзине:<br/>';
+        for (var item in basket){
+            out +=  '<button class="delete">x</button>';
+            out +=  basket[item].title; //название
+            out +=  basket[item].picture; //картинка
+            out +=  '<button class="minus">-</button>';
+            out +=  basket[item].count; //количество
+            out +=  '<button class="plus">+</button>';
+            out +=  basket[item].price * basket[item].count; //сумма
+
+
+        }
+        $('#my-basket').html(out);
+    }
+}
+
