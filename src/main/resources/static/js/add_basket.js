@@ -42,7 +42,7 @@ function showMiniBasket(){
 showMiniBasket();
 
 
-$(document).ready(function(){
+$(document).ready(function showBasket(){
     if ( $.isEmptyObject(basket) ){
         //корзина пуста
         var out = '<br> <h3>Корзина пуста. Добавьте товар в корзину</h3> <br> <div class="d-grid gap-2"> <a class="btn btn-info" href="/" role="button">Каталог</a> </div>';
@@ -53,46 +53,58 @@ $(document).ready(function(){
     var out ='<h1>Товары в корзине:</h1><br/>';
     for (var item in basket){
         out +=  '<div class="alert alert-info mt-2 col-md-8 offset-md-2 py-5">' +
-            '<button class="delete btn btn-outline-dark" data-art"'+item+'">x</button>' +
-            basket[item].title +
-            basket[item].picture +
-            '<button class="minus btn btn-danger" data-art"'+item+'">-</button>' +
-            basket[item].count +
-            '<button class="plus btn btn-success" data-art"'+item+'">+</button>' +
-            basket[item].price +
-            basket[item].count +
+            '<button class="delete btn btn-outline-dark" data-art"'+basket[item]+'">x</button>' +
+            '     ' + '<strong class="h3">' + basket[item].title + '</strong>' +
+            '     '+basket[item].picture +
+            '     '+'<button class="minus btn btn-danger" data-art"'+basket[item]+'">-</button>' +
+            '     '+ '<mark class="h5">' + basket[item].count + '</mark>' +
+            '     '+'<button class="plus btn btn-success" data-art"'+basket[item]+'">+</button>' +
+            '     '+ '<ins class="h5">' + basket[item].price * basket[item].count + '  Рублей' + '</ins>' +
             '</div>';
+
         $('#my-basket').html(out);
+        }
+        $('.plus').on('click', plusTovar);
+        $('.minus').on('click', minusTovar);
+        $('.delete').on('click', deleteTovar);
     }
-    $('.plus').on('click', plusTovar);
-    $('.minus').on('click', minusTovar);
-    $('.delete').on('click', deleteTovar);
-    }
+
+
+
     function plusTovar(){
         var item = $(this).attr('data-art');
-        basket[item].count++;
-        saveBasketToLS();
-        showMiniBasket();
+        for (var item in basket) {
+            basket[item].count++;
+            saveBasketToLS();
+            showBasket();
+            break;
+        }
     }
 
     function minusTovar(){
         var item = $(this).attr('data-art');
-        if (basket[item]>1) {
-            basket[item].count--;
+        for (var item in basket) {
+            if (basket[item].count > 1) {
+                basket[item].count--;
+            } else {
+                delete basket[item];
+            }
+            saveBasketToLS();
+            showBasket();
+            break;
         }
-        else {
-            delete basket[item];
-        }
-        saveBasketToLS();
-        showMiniBasket();
     }
 
     function deleteTovar(){
         var item = $(this).attr('data-art');
-        delete basket[item];
-        saveBasketToLS();
-        showMiniBasket();
+        for (var item in basket) {
+            delete basket[item];
+            saveBasketToLS();
+            showBasket();
+            break;
+        }
     }
+
 
 });
 
