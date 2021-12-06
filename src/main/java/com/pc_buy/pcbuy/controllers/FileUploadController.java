@@ -12,22 +12,20 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+import static com.pc_buy.pcbuy.config.MvcConfig.FILE_STORE_PATH;
+
 @RestController
 public class FileUploadController {
-
-@Autowired
+    @Autowired
     FileUploadService fileUploadService;
     @Autowired
     private CatalogRepository catalogRepository;
 
-    @PostMapping ("/shop/catalog/add")
-    public void uploadFile(@RequestParam String title,@RequestParam String description,@RequestParam Integer price, @RequestParam MultipartFile file, HttpServletResponse response) throws IOException {
-
-        String result = fileUploadService.uploadFile(file);
-        String l = file.getOriginalFilename();
-        Catalog catalog = new Catalog(title, description, price, "images/");
+    @PostMapping("/shop/catalog/add")
+    public void uploadFile(@RequestParam String title, @RequestParam String description, @RequestParam Integer price, @RequestParam MultipartFile file, HttpServletResponse response) throws IOException {
+        String result = fileUploadService.uploadFile(FILE_STORE_PATH, file);
+        Catalog catalog = new Catalog(title, description, price, result);
         catalogRepository.save(catalog);
         response.sendRedirect("/shop/catalog");
     }
-
 }
