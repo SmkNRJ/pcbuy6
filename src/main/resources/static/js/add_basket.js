@@ -8,7 +8,7 @@ function addToBasket(button) {
     //добавление товара в корзину
     id = $(button).parent().find(".el_id").val();
     title = $(button).parent().find(".el_title").val();
-    price = $(button).parents().find(".tovar").children("small")/*.children("p")*/.find(".el_price").text();
+    price = $(button).parent().parent().find(".el_price").text();
 
     if (basket[id] !=undefined){
         basket[id].count++;
